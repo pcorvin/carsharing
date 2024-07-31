@@ -1,0 +1,53 @@
+.calculator {
+    font-family: Arial, sans-serif;
+  }
+  
+  .input, .select, .button {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    background-color: #45a049;
+  }
+  
+  .button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .routes {
+    margin-top: 20px;
+  }
+  
+  .route {
+    background-color: #f1f1f1;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .route:hover {
+    background-color: #e1e1e1;
+  }
+  
+  .price {
+    margin-top: 20px;
+    font-weight: bold;
+  }
+
+  .error {
+    color: red;
+    margin-bottom: 10px;
+  }
