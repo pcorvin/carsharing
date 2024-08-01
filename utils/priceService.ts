@@ -21,8 +21,35 @@ interface PriceStructure {
   };
 }
 
-const providers: { [key: string]: ProviderData } = {
-  // ... (keep your existing providers data here)
+const providers = {
+  Bolt: {
+    cars: {
+      Economy: { perMinute: 0.11, perKm: 0.18 },
+    },
+    baseFare: 1
+  },
+  ShareNow: {
+    cars: {
+      Small: { perMinute: 0.19, perKm: 0 },
+      Medium: { perMinute: 0.22, perKm: 0 },
+      Large: { perMinute: 0.25, perKm: 0 }
+    },
+    baseFare: 0
+  },
+  Sixt: {
+    cars: {
+      Economy: { perMinute: 0.09, perKm: 0.29 }
+    },
+    baseFare: 1
+  },
+  Miles: {
+    cars: {
+      Small: { perMinute: 0, perKm: 0.89 },
+      Medium: { perMinute: 0, perKm: 1.09 },
+      Van: { perMinute: 0, perKm: 1.29 }
+    },
+    baseFare: 1
+  }
 };
 
 export const calculatePrices = (route: Route) => {
