@@ -15,6 +15,12 @@ interface ProviderData {
   baseFare: number;
 }
 
+interface PriceStructure {
+  [provider: string]: {
+    [carType: string]: number;
+  };
+}
+
 const providers: { [key: string]: ProviderData } = {
   // ... (keep your existing providers data here)
 };
@@ -23,7 +29,7 @@ export const calculatePrices = (route: Route) => {
   const distanceKm = route.distance / 1000;
   const durationMinutes = route.duration / 60;
 
-  const prices: { [key: string]: { [key: string]: number } } = {};
+  const prices: PriceStructure = {};
 
   for (const [providerName, providerData] of Object.entries(providers)) {
     prices[providerName] = {};

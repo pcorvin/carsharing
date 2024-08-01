@@ -19,10 +19,17 @@ interface PriceCalculatorProps {
   route: Route | null;
 }
 
+interface PriceStructure {
+  [provider: string]: {
+    [carType: string]: number;
+  };
+}
+
 function PriceCalculator({ onDestinationChange, route }: PriceCalculatorProps) {
   const [destinationInput, setDestinationInput] = useState('');
-  const [prices, setPrices] = useState<any>(null);
+  const [prices, setPrices] = useState<PriceStructure | null>(null);
   const [error, setError] = useState<string | null>(null);
+  
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
