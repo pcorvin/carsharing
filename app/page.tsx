@@ -6,14 +6,22 @@ import styles from '../styles/Home.module.css';
 
 const Map = dynamic(() => import('../utils/Map'), { ssr: false });
 
-// Fixed starting point (example: Berlin Hauptbahnhof)
-const FIXED_START_POINT = [13.408955, 52.537865];
+interface Coordinates {
+  longitude: number;
+  latitude: number;
+}
+
+interface Route {
+  distance: number;
+  duration: number;
+  geometry: any; // You might want to define a more specific type for geometry
+}
 
 export default function Home() {
-  const [destination, setDestination] = useState(null);
-  const [route, setRoute] = useState(null);
+  const [destination, setDestination] = useState<[number, number] | null>(null);
+  const [route, setRoute] = useState<Route | null>(null);
 
-  const handleDestinationChange = async (newDestination) => {
+  const handleDestinationChange = async (newDestination: Coordinates) => {
     console.log("New destination set:", newDestination);
     setDestination([newDestination.longitude, newDestination.latitude]);
   };
@@ -21,12 +29,12 @@ export default function Home() {
   useEffect(() => {
     if (destination) {
       console.log("Fetching route for destination:", destination);
-      fetchRoute(FIXED_START_POINT, destination);
+      fetchRoute([13.408964, 52.537874], destination);
     }
   }, [destination]);
 
-  const fetchRoute = async (start, end) => {
-    const url = `https://api.mapbox.com/directions/v5/mapbox/driving/${start[0]},${start[1]};${end[0]},${end[1]}?geometries=geojson&steps=true&access_token=pk.eyJ1IjoiY29ydmluZW56aSIsImEiOiJjbHphMWpldzkwZTB6MnFzYWZxbHRyMzl1In0.4HKIQNTWjqSZ9E1FUER4SQ`;
+  const fetchRoute = async (start: [number, number], end: [number, number]) => {
+    const url = `https://api.mapbox.com/directions/v5/mapbox/driving/${start[0]},${start[1]};${end[0]},${end[1]}?geometries=geojson&steps=true&access_token=${process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}`;
 
     try {
       const response = await fetch(url);
@@ -41,7 +49,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Map 
-        startPoint={FIXED_START_POINT}
+        startPoint={[13.408964, 52.537874]}
         destination={destination}
         route={route}
       />

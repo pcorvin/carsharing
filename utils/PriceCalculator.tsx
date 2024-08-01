@@ -1,14 +1,30 @@
 import { useState, useEffect } from 'react';
-import { calculatePrices } from '../utils/priceService';
-import { geocodeAddress } from '../utils/geocodingService';
+import { calculatePrices } from './priceService';
+import { geocodeAddress } from './geocodingService';
 import styles from '../styles/PriceCalculator.module.css';
 
-function PriceCalculator({ onDestinationChange, route }) {
-  const [destinationInput, setDestinationInput] = useState('');
-  const [prices, setPrices] = useState(null);
-  const [error, setError] = useState(null);
+interface Coordinates {
+  longitude: number;
+  latitude: number;
+}
 
-  const handleSubmit = async (e) => {
+interface Route {
+  distance: number;
+  duration: number;
+  geometry: any; // You might want to define a more specific type for geometry
+}
+
+interface PriceCalculatorProps {
+  onDestinationChange: (coordinates: Coordinates) => void;
+  route: Route | null;
+}
+
+function PriceCalculator({ onDestinationChange, route }: PriceCalculatorProps) {
+  const [destinationInput, setDestinationInput] = useState('');
+  const [prices, setPrices] = useState<any>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
     console.log("Geocoding address:", destinationInput);
