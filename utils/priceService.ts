@@ -24,28 +24,28 @@ interface PriceStructure {
 const providers = {
   Bolt: {
     cars: {
-      Economy: { perMinute: 0.11, perKm: 0.18 },
-    },
-    baseFare: 1
-  },
-  ShareNow: {
-    cars: {
-      Small: { perMinute: 0.19, perKm: 0 },
-      Medium: { perMinute: 0.22, perKm: 0 },
-      Large: { perMinute: 0.25, perKm: 0 }
+      Economy: { perMinute: 0.15, perKm: 0.27 },
     },
     baseFare: 0
   },
+  ShareNow: {
+    cars: {
+      Small: { perMinute: 0.39, perKm: 0 },
+      Medium: { perMinute: 0.39, perKm: 0 },
+      Large: { perMinute: 0.45, perKm: 0 }
+    },
+    baseFare: 0.99
+  },
   Sixt: {
     cars: {
-      Economy: { perMinute: 0.09, perKm: 0.29 }
+      Economy: { perMinute: 0.35, perKm: 0 },
+      Premium: { perMinute: 0.4, perKm: 0 }
     },
     baseFare: 1
   },
   Miles: {
     cars: {
-      Small: { perMinute: 0, perKm: 0.89 },
-      Medium: { perMinute: 0, perKm: 1.09 },
+      Small: { perMinute: 0, perKm: 0.98 },
       Van: { perMinute: 0, perKm: 1.29 }
     },
     baseFare: 1
